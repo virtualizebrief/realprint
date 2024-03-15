@@ -8,3 +8,7 @@ Endpoint, client, vda or any name for the computer that will be requesting to co
 **Manager** <br>
 _realprint-manager.ps1_ <br>
 Administrator console for both admins, service desk, desktop support and even end users, who ever you'd like to give access to for assigning printers to endpoint names.
+
+**Bonus features** <br>
+_convertto-textasciiart.ps1_ <br>
+Add the cool banner with ascii art.
