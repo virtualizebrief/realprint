@@ -11,4 +11,4 @@ Administrator console for both admins, service desk, desktop support and even en
 
 ### Bonus features
 :arrow_forward: *convertto-textasciiart.ps1* <br>
-Add the cool banner with ascii art.
+Banner with ascii art.
