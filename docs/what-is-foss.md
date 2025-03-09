@@ -4,7 +4,9 @@ sidebar_position: 2
 
 # What is FOSS?
 
-FOSS is an acronym for "Free and Open Source Software". It's a term for software that's free to use and has a source code that's available to the public.
+:::info Free and Open Source Software
+It's a term for software that's free to use and has a source code that's available to the public.
+:::
 
 ## How FOSS works
 
