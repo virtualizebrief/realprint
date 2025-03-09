@@ -1,0 +1,8 @@
+{
+  "label": "Trouble Shooting",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "When things fall apart try this."
+  }
+}
