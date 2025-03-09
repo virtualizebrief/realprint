@@ -1,4 +1,4 @@
-# Real Print Manager
+# Real Print manager
 
 ## realprint-manager.ps1
 :::info Database format

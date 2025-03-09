@@ -1,8 +1,8 @@
-# Real Print Agent
+# Real Print agent
 
 ## realprint-agent.ps1
 
-:::info Database
+:::warning Database
 User needs read permission to real print database.
 :::
 

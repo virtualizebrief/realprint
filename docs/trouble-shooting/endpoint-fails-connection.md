@@ -1,3 +1,3 @@
-# Endpoint fails connection to database
+# Endpoint fails connection
 
 Why does this happen? Lets learn together.
