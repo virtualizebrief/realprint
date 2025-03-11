@@ -44,7 +44,7 @@ Run the following commands:
 - `realprint-manager.ps1` to add a device, assign printer(s) and set default.
 - `realprint-agent.ps1` on the device you just assigned printers.
 
-Printers should make and on the endpoint you'll find log files in `c:\support` with results.
+Printers should now be connect tothe endpoint. Log files in `c:\support` with detailed results.
 
 :::tip Mission Accomplished
 You did it! Your first Real Print. Now if your feeling up to it lets dive deeper into what this thing can do.
