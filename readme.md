@@ -3,9 +3,8 @@
 
 # Real Print
 
-:::tip realprint.org is live!
-For more detailed information please visit our main site: ⚡ https://realprint.org ⚡
-:::
+> [!TIP] realprint.org is live!
+> For more detailed information please visit our main site: ⚡ https://realprint.org ⚡
 
 ### *Citrix app & desktop printing simplified.*
 Enterprise print solution taylored to Citrix Virtual App & Desktop deployments. Great for other setups and corporate wide deployment.
