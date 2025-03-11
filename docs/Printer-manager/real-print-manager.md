@@ -2,7 +2,10 @@
 sidebar_position: 1
 ---
 
-# realprint-manager.ps1
+# Real Print manager
+
+*Admin console for Real Print management: realprint-manager.ps1*
+
 :::info Database format
 Real print uses a flat file database. You can use a sql database and we have successful implementions using them. For simplicity on GitHub code has been written to use a flat file database structure.
 :::

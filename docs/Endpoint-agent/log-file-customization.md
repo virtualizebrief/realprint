@@ -1,5 +1,7 @@
 # Log file customization
 
+*Collect detailed information on Real Print results*
+
 Files are created in two formats and placed in `c:\support`
 
 - Plain text

@@ -2,7 +2,9 @@
 sidebar_position: 1
 ---
 
-# realprint-agent.ps1
+# Real Print agent
+
+*How endpoints connect to printers: realprint-agent.ps1*
 
 :::warning Database
 User needs read permission to real print database.
