@@ -3,7 +3,7 @@
 
 # Real Print
 
-> [!TIP] realprint.org is live!
+> [!TIP]
 > For more detailed information please visit our main site: ⚡ https://realprint.org ⚡
 
 ### *Citrix app & desktop printing simplified.*
