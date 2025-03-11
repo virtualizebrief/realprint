@@ -4,7 +4,8 @@
 # Real Print
 
 > [!TIP]
-> ⚡ https://realprint.org ⚡ For more tips and tricks please visit at our official site. 
+> ⚡ https://realprint.org ⚡
+> For more tips & tricks visit our official site. 
 
 ### *Citrix app & desktop printing simplified.*
 Enterprise print solution taylored to Citrix Virtual App & Desktop deployments. Great for other setups and corporate wide deployment.
