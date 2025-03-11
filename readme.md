@@ -2,8 +2,10 @@
 |---|---|---|---|---|---|
 
 # Real Print
-### *If its not real its passthrough*
+### *Citrix app & desktop printing simplified.*
 Enterprise print solution taylored to Citrix Virtual App & Desktop deployments. Great for other setups and corporate wide deployment.
+
+For more detailed information please visit our main site: ⚡ https://realprint.org ⚡
 
 ## [realprint-agent.ps1](realprint-agent.ps1)
 
