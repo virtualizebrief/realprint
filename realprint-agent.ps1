@@ -6,10 +6,10 @@ $psProcesses = Get-Process -Name "powershell" | Where-Object { $_.Id -ne $curren
 foreach ($process in $psProcesses) {
     try {
         $commandLine = (Get-WmiObject Win32_Process -Filter "ProcessId = $($process.Id)").CommandLine
-
+        
         if ($commandLine -like "*$currentScriptPath*") {
             Write-Host "Found another instance of this script running with PID: $($process.Id)" -ForegroundColor Yellow
-
+            
             # Terminate the process
             Stop-Process -Id $process.Id -Force
             if ($?) {
@@ -25,8 +25,8 @@ foreach ($process in $psProcesses) {
 }
 
 # Verify no other instances are running
-$remainingInstances = Get-Process -Name "powershell" | Where-Object {
-    $_.Id -ne $currentPID -and
+$remainingInstances = Get-Process -Name "powershell" | Where-Object { 
+    $_.Id -ne $currentPID -and 
     (Get-WmiObject Win32_Process -Filter "ProcessId = $($_.Id)").CommandLine -like "*$currentScriptPath*"
 }
 
@@ -69,7 +69,7 @@ $printerArray = @()
 foreach ($path in $uncPaths) {
     $server = $path.Split('\')[2]    # Get server name
     $printer = $path.Split('\')[3]   # Get printer name
-
+    
     # Create printer object
     $printerObj = [PSCustomObject]@{
         name = $printer
@@ -77,7 +77,7 @@ foreach ($path in $uncPaths) {
         isDefault = if ($path -eq $uncPaths[0]) { $true } else { $false }  # First printer is default
         status = "Active"
     }
-
+    
     $printerArray += $printerObj
 }
 
@@ -133,19 +133,30 @@ If (-Not $endpointFileExist){Write-Host "Error 420: $endPoint has no database en
     Pause
     Exit}
 
+#if $compareCurrent is $null then compare-object fails
+$compareCurrent = ($currentPrinters.computer.printers).name
+$compareAdd = ($addPrinters.computer.printers).name
+if ($compareCurrent -eq $null){$compareCurrent = "1"}
+
 #-Delete those current printers not found on add printer list
-$realDeletePrinters = Compare-Object -ReferenceObject ($currentPrinters.computer.printers).name -DifferenceObject ($addPrinters.computer.printers).name -IncludeEqual |
+$realDeletePrinters = Compare-Object -ReferenceObject $compareCurrent -DifferenceObject $compareAdd -IncludeEqual |
  Where-Object {$_.SideIndicator -like "<="} |
   foreach { $_.InputObject }
 Foreach ($realDeletePrinter in $realDeletePrinters){
-$getDate = Get-Date -format "yyyyMMddTHHmmss"
-Add-Content -Path $LogFile -Value "$GetDate   deleting: $realDeletePrinter"
-Add-Content -Path $LogFileCSV -Value "$GetDate,Deleting,$realDeletePrinter"
-Write-Host "deleting: $realDeletePrinter" -ForegroundColor yellow
-$toNull = (gwmi -Class Win32_Printer | ? Name -like *$realDeletePrinter*).Delete()}
+    If ($realDeletePrinter -ne "1"){
+    $getDate = Get-Date -format "yyyyMMddTHHmmss"
+    Add-Content -Path $LogFile -Value "$GetDate   deleting: $realDeletePrinter"
+    Add-Content -Path $LogFileCSV -Value "$GetDate,Deleting,$realDeletePrinter"
+    Write-Host "deleting: $realDeletePrinter" -ForegroundColor yellow
+    $toNull = (gwmi -Class Win32_Printer | ? Name -like *$realDeletePrinter*).Delete()
+    }
+}
 
 #-Skipping those current printers found on both lists
-$realSkipPrinters = Compare-Object -ReferenceObject ($currentPrinters.computer.printers).name -DifferenceObject ($addPrinters.computer.printers).name -IncludeEqual |
+$compareCurrent = ($currentPrinters.computer.printers).name
+$compareAdd = ($addPrinters.computer.printers).name
+if ($compareCurrent -eq $null){$compareCurrent = "1"} #if $compareCurrent is $null then compare-object fails
+$realSkipPrinters = Compare-Object -ReferenceObject $compareCurrent -DifferenceObject $compareAdd -IncludeEqual |
  Where-Object {$_.SideIndicator -like "=="} |
   foreach { $_.InputObject }
 Foreach ($realSkipPrinter in $realSkipPrinters){
@@ -155,7 +166,10 @@ Add-Content -Path $LogFileCSV -Value "$GetDate,Skipping,$realSkipPrinter"
 Write-Host "skip    : $realSkipPrinter" -ForegroundColor yellow}
 
 #-Add printers not found on current list
-$realAddPrinters = Compare-Object -ReferenceObject ($currentPrinters.computer.printers).name -DifferenceObject ($addPrinters.computer.printers).name -IncludeEqual |
+$compareCurrent = ($currentPrinters.computer.printers).name
+$compareAdd = ($addPrinters.computer.printers).name
+if ($compareCurrent -eq $null){$compareCurrent = "1"} #if $compareCurrent is $null then compare-object fails
+$realAddPrinters = Compare-Object -ReferenceObject $compareCurrent -DifferenceObject $compareAdd -IncludeEqual |
  Where-Object {$_.SideIndicator -like "=>"} |
   foreach { $_.InputObject }
 Foreach ($realAddPrinter in $realAddPrinters){
@@ -183,9 +197,9 @@ do {
     Write-Host "default : attempt $tries (60 second pause & retry)" -ForegroundColor green
     Add-Content -Path $LogFile -Value "$GetDate   default : attempt $tries (60 second pause & retry)"
     Add-Content -Path $LogFileCSV -Value "$GetDate,Default set,default : attempt $tries (60 second pause & retry)"
-
+    
     # actually set default
-    $toNull = (gwmi -Class Win32_Printer | ? Name -eq $defaultPrinterServer).SetDefaultPrinter()
+    $toNull = (gwmi -Class Win32_Printer | ? Name -eq $defaultPrinterServer).SetDefaultPrinter()  
     Start-Sleep -S 60
     $condition = ((Get-WmiObject -Class Win32_Printer | Where-Object {$_.Default -eq $true}).Name -eq $defaultPrinterServer)
 
@@ -206,8 +220,8 @@ Add-Content -Path $LogFileCSV -Value "$GetDate,Seconds to complete,$runTime"
 Add-Content -Path $LogFileCSV -Value "....."
 Add-Content -Path $LogFile -Value "."
 
-# Stop-Process -Id $Pid -Force e,$runTime"
+# Stop-Process -Id $Pid -Force onds to complete,$runTime"
 Add-Content -Path $LogFileCSV -Value "....."
 Add-Content -Path $LogFile -Value "."
 
-# Stop-Process -Id $Pid -Force
+# Stop-Process -Id $Pid -Force 
