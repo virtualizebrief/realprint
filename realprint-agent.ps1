@@ -56,7 +56,7 @@ $defaultServer = ($addPrinters.computer.printers | where-object {$_.isDefault -e
 $defaultPrinterServer = "\\" + $defaultServer + "\" + $setDefaultPrinter
 
 # default printer tries
-$maxTries = 5
+$maxTries = 1
 $tries = 0
 $condition = $false
 
@@ -153,9 +153,6 @@ Foreach ($realDeletePrinter in $realDeletePrinters){
 }
 
 #-Skipping those current printers found on both lists
-$compareCurrent = ($currentPrinters.computer.printers).name
-$compareAdd = ($addPrinters.computer.printers).name
-if ($compareCurrent -eq $null){$compareCurrent = "1"} #if $compareCurrent is $null then compare-object fails
 $realSkipPrinters = Compare-Object -ReferenceObject $compareCurrent -DifferenceObject $compareAdd -IncludeEqual |
  Where-Object {$_.SideIndicator -like "=="} |
   foreach { $_.InputObject }
@@ -166,9 +163,6 @@ Add-Content -Path $LogFileCSV -Value "$GetDate,Skipping,$realSkipPrinter"
 Write-Host "skip    : $realSkipPrinter" -ForegroundColor yellow}
 
 #-Add printers not found on current list
-$compareCurrent = ($currentPrinters.computer.printers).name
-$compareAdd = ($addPrinters.computer.printers).name
-if ($compareCurrent -eq $null){$compareCurrent = "1"} #if $compareCurrent is $null then compare-object fails
 $realAddPrinters = Compare-Object -ReferenceObject $compareCurrent -DifferenceObject $compareAdd -IncludeEqual |
  Where-Object {$_.SideIndicator -like "=>"} |
   foreach { $_.InputObject }
@@ -217,10 +211,6 @@ Write-Host "Seconds to complete: " -NoNewline
 Add-Content -Path $LogFile -Value "$GetDate   -------------------------------"
 Add-Content -Path $LogFile -Value "$GetDate   Seconds to complete work: $runTime"
 Add-Content -Path $LogFileCSV -Value "$GetDate,Seconds to complete,$runTime"
-Add-Content -Path $LogFileCSV -Value "....."
-Add-Content -Path $LogFile -Value "."
-
-# Stop-Process -Id $Pid -Force onds to complete,$runTime"
 Add-Content -Path $LogFileCSV -Value "....."
 Add-Content -Path $LogFile -Value "."
 
