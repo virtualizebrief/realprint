@@ -8,14 +8,14 @@ General list of things that may come up. For those looking to post a bug or subm
 
 <details>
 
-  <summary>Unable to connect to database</summary>
+  <summary>Double hop Citrix session has incorrect endpoint</summary>
 
-Make user end user can get to the Real Print database path and at minimum read / open files. If they cannot, the Real Print agent will be unable to aquire printer information.
+Additional settings need to be configured on the first hop Citrix Desktop.
 
-#### Example Real Print database location
-```
-\\server\realprint\database 
-```
+## Resources
+
+- [Client name not passing through in a double-hop scenario](https://support.citrix.com/s/article/CTX239561-client-name-not-passing-through-in-a-doublehop-scenario?language=en_US)
+  
 
 </details>
 
@@ -36,4 +36,17 @@ $tries = 0 #do not adjust, this is needed to start ties at 0.
 $condition = $false #do not adjust, this keeps the agent knowing default has yet to be set.
 ```
   
+</details>
+
+<details>
+
+  <summary>Unable to connect to database</summary>
+
+Make user end user can get to the Real Print database path and at minimum read / open files. If they cannot, the Real Print agent will be unable to aquire printer information.
+
+#### Example Real Print database location
+```
+\\server\realprint\database 
+```
+
 </details>
