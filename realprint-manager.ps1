@@ -1,5 +1,5 @@
 # Configurables
-Set-Location "\\epic-dc1-fs01\root\Citrix\RealPrint\"
+Set-Location "\\server01\realprint\"
 $host.UI.RawUI.WindowTitle = "Real Print Manager"
 $ErrorActionPreference = 'SilentlyContinue'
 
