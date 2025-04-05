@@ -4,12 +4,12 @@ $host.UI.RawUI.WindowTitle = "Real Print Manager"
 $ErrorActionPreference = 'SilentlyContinue'
 
 # Global Variables
-$dataBase = "\\epic-dc1-fs01\root\Citrix\RealPrint\database\"  # Requires trailing \
+$dataBase = "\\server01\realprint\database\"  # Requires trailing \
 $endpoint = $null                                              # Clear any previous value
 $PrintServers = @(
-    "lcmc-prtsrv01.lcmchealth.org"
-    "lcmc-prtsrv02.lcmchealth.org"
-    "lcmc-prtsrv03.lcmchealth.org"
+    "printserver01.domain.com"
+    "printserver02.domain.com"
+    "printserver03.domain.com"
 )
 
 # Functions
